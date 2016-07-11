@@ -1,7 +1,17 @@
-﻿
+﻿@model BankMileniumInterviewApp.Models.UserInfo
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
+@using (Html.BeginForm("Next", "Home"))
+{
+    @Html.Editor("Name", new { value=Model.Name})
+
+    @Html.Editor("Email", new { value = Model.Email })
+
+    <input type="submit" value="Dalej" />
+    
+}
 

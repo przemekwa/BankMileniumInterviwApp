@@ -9,13 +9,24 @@ namespace BankMileniumInterviewApp.Models
     {
         public string CurrentCuture { get; set; } = "PL";
 
-        public IEnumerable<CultureOption> CultureOptionList { get; set; }
+        private IEnumerable<CultureOption> cultureOptionList;
 
-        public HeaderModel(string CurrentCuture)
+        public IEnumerable<CultureOption> CultureOptionList
         {
-            this.CurrentCuture = CurrentCuture;
+            get
+            {
+                this.cultureOptionList.Single(s => s.Id == this.CurrentCuture).IsActive = true;
 
-            this.CultureOptionList = new List<CultureOption>
+                return cultureOptionList;
+            }
+            set { cultureOptionList = value; }
+        }
+
+
+    
+        public HeaderModel()
+        {
+            this.cultureOptionList = new List<CultureOption>
             {
                 new CultureOption
                 {
@@ -30,7 +41,7 @@ namespace BankMileniumInterviewApp.Models
             };
 
 
-            this.CultureOptionList.Single(s => s.Id == this.CurrentCuture).IsActive = true;
+          
 
 
         }

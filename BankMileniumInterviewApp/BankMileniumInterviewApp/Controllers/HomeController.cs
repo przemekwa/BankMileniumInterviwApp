@@ -17,10 +17,22 @@ namespace BankMileniumInterviewApp.Controllers
                 HttpContext.Session["currentCuture"] = "PL";
             }
 
-            var model = new HeaderModel(HttpContext.Session["currentCuture"].ToString());
+            var model = new UserInfo
+            {
+                CurrentCuture = HttpContext.Session["currentCuture"].ToString()
+            };
+
 
            
             return View(model);
+        }
+
+        public ActionResult Next(UserInfo userInfo)
+        {
+
+            userInfo.CurrentCuture = HttpContext.Session["currentCuture"].ToString();
+
+            return View(userInfo);
         }
 
         public ActionResult Set(string userCuture)
