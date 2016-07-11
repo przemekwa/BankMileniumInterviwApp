@@ -4,9 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-
 @using (Html.BeginForm("Next", "Home"))
 {
+    @Html.ValidationSummary(true)
+
     @Html.Editor("Name", new { value=Model.Name})
 
     @Html.Editor("Email", new { value = Model.Email })
