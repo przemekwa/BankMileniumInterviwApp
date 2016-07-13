@@ -4,13 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-@using (Html.BeginForm("Next", "Home"))
+@using (Html.BeginForm("Next", "Home", FormMethod.Post))
 {
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary()
 
-    @Html.Editor("Name", new { value=Model.Name})
+    @Html.EditorFor(m => m.Name);
 
-    @Html.Editor("Email", new { value = Model.Email })
+    @Html.EditorFor(m => m.Email);
+
 
     <input type="submit" value="Dalej" />
     

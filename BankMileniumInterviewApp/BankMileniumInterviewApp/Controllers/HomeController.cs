@@ -27,8 +27,14 @@ namespace BankMileniumInterviewApp.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public ActionResult Next(UserInfo userInfo)
         {
+            if (userInfo.Name != "ds")
+            {
+                this.ModelState.AddModelError("name", "żle");
+
+            }
 
             userInfo.CurrentCuture = HttpContext.Session["currentCuture"].ToString();
 
