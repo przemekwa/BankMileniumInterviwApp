@@ -110,6 +110,7 @@
     <Compile Include="Models\HeaderModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TranslatorsFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

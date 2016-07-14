@@ -6,17 +6,21 @@
 
 @using (Html.BeginForm("Next", "Home", FormMethod.Post))
 {
-    @Html.ValidationSummary()
-
-     @Html.EditorFor(m => m.Name);
+    @Html.ValidationSummary();
 
 
-    <br />
-     @Html.EditorFor(m => m.Email);
-    
+    <p>
+        @Model.Translator["Name"]
 
+        @Html.EditorFor(m => m.Name)
+    </p>
 
-    <input type="submit" value="Dalej" />
+    <p>
+        @Model.Translator["Email"]
+        @Html.EditorFor(m => m.Email, new[] { "@maxlenght=50" })
+    </p>
+
+    <input   type="submit" value="Dalej" />
     
 }
 

@@ -37,6 +37,11 @@ namespace BankMileniumInterviewApp.Models
                 {
                     Id = "EN",
                     TextDisplay = "Angielska wersja"
+                },
+                 new CultureOption
+                {
+                    Id = "HP",
+                    TextDisplay = "Trzeci"
                 }
             };
 

@@ -20,7 +20,8 @@ namespace BankMileniumInterviewApp.Controllers
 
             var model = new UserInfo
             {
-                CurrentCuture = HttpContext.Session["currentCuture"].ToString()
+                CurrentCuture = HttpContext.Session["currentCuture"].ToString(),
+                Translator = new TranslatorsFactory().GetDictionary(HttpContext.Session["currentCuture"].ToString())
             };
            
             return View(model);
@@ -30,17 +31,18 @@ namespace BankMileniumInterviewApp.Controllers
         public ActionResult Next(UserInfo userInfo)
         {
             userInfo.CurrentCuture = HttpContext.Session["currentCuture"].ToString();
+            userInfo.Translator = new TranslatorsFactory().GetDictionary(HttpContext.Session["currentCuture"].ToString());
 
             this.ModelState.Clear();
 
             if (!Regex.IsMatch(userInfo.Name, "[A-Za-z]{2}")) 
             {
-                this.ModelState.AddModelError("name", "Pole nazwa użytkonikwa musi mieć tylko litery o maksymalnej długości 30 znaków.");
+                this.ModelState.AddModelError("name", userInfo.Translator["NameError"]);
             }
 
             if (!Regex.IsMatch(userInfo.Email, @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
             {
-                this.ModelState.AddModelError("Email", "Pole email nie zawira poprawnego adresu email");
+                this.ModelState.AddModelError("Email", userInfo.Translator["EmailError"]);
             }
 
             if (!this.ModelState.IsValid)
