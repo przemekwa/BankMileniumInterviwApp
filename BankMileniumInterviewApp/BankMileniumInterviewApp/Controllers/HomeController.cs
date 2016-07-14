@@ -13,8 +13,6 @@ namespace BankMileniumInterviewApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            HttpContext.Session.Clear();
-
             if (HttpContext.Session["currentCuture"] == null)
             {
                 HttpContext.Session["currentCuture"] = "PL";
@@ -24,8 +22,6 @@ namespace BankMileniumInterviewApp.Controllers
             {
                 CurrentCuture = HttpContext.Session["currentCuture"].ToString()
             };
-
-
            
             return View(model);
         }
@@ -33,7 +29,11 @@ namespace BankMileniumInterviewApp.Controllers
         [HttpPost]
         public ActionResult Next(UserInfo userInfo)
         {
-            if (!Regex.IsMatch(userInfo.Name, "[A-Za-z]{0,30}")) 
+            userInfo.CurrentCuture = HttpContext.Session["currentCuture"].ToString();
+
+            this.ModelState.Clear();
+
+            if (!Regex.IsMatch(userInfo.Name, "[A-Za-z]{2}")) 
             {
                 this.ModelState.AddModelError("name", "Pole nazwa użytkonikwa musi mieć tylko litery o maksymalnej długości 30 znaków.");
             }
@@ -47,8 +47,6 @@ namespace BankMileniumInterviewApp.Controllers
             {
                 return View("Index", userInfo);
             }
-
-            userInfo.CurrentCuture = HttpContext.Session["currentCuture"].ToString();
 
             return View(userInfo);
         }

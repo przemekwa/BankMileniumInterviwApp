@@ -8,9 +8,12 @@
 {
     @Html.ValidationSummary()
 
-    @Html.EditorFor(m => m.Name);
+     @Html.EditorFor(m => m.Name);
 
-    @Html.EditorFor(m => m.Email);
+
+    <br />
+     @Html.EditorFor(m => m.Email);
+    
 
 
     <input type="submit" value="Dalej" />

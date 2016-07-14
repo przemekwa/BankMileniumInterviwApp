@@ -7,19 +7,10 @@ using System.Web;
 
 namespace BankMileniumInterviewApp.Models
 {
-    public class UserInfo : HeaderModel, IValidatableObject
+    public class UserInfo : HeaderModel
     {
         public string Name { get; set; }
 
         public string Email { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            return new List<ValidationResult>
-           {
-               new ValidationResult("źłe")
-               
-           };
-        }
-    }
+}
 }
