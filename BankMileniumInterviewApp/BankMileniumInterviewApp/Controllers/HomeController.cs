@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using BankMileniumInterviewApp.Models;
@@ -12,6 +13,8 @@ namespace BankMileniumInterviewApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            HttpContext.Session.Clear();
+
             if (HttpContext.Session["currentCuture"] == null)
             {
                 HttpContext.Session["currentCuture"] = "PL";
@@ -30,10 +33,19 @@ namespace BankMileniumInterviewApp.Controllers
         [HttpPost]
         public ActionResult Next(UserInfo userInfo)
         {
-            if (userInfo.Name != "ds")
+            if (!Regex.IsMatch(userInfo.Name, "[A-Za-z]{0,30}")) 
             {
-                this.ModelState.AddModelError("name", "żle");
+                this.ModelState.AddModelError("name", "Pole nazwa użytkonikwa musi mieć tylko litery o maksymalnej długości 30 znaków.");
+            }
 
+            if (!Regex.IsMatch(userInfo.Email, @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"))
+            {
+                this.ModelState.AddModelError("Email", "Pole email nie zawira poprawnego adresu email");
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return View("Index", userInfo);
             }
 
             userInfo.CurrentCuture = HttpContext.Session["currentCuture"].ToString();

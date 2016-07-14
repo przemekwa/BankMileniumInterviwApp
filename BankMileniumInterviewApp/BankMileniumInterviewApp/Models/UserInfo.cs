@@ -9,7 +9,6 @@ namespace BankMileniumInterviewApp.Models
 {
     public class UserInfo : HeaderModel, IValidatableObject
     {
-        [Required]
         public string Name { get; set; }
 
         public string Email { get; set; }
