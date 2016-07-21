@@ -29,14 +29,6 @@ namespace BankMileniumInterviewApp
                         ["Email"] = "What is Your email?",
                         ["EmailError"] = "Email error"
                     };
-                case "HP":
-                    return new Dictionary<string, string>
-                    {
-                        ["Name"] = "What is Your name?",
-                        ["NameError"] = "Name error is ...",
-                        ["Email"] = "What is Your email?",
-                        ["EmailError"] = "Email error"
-                    };
             }
 
         }

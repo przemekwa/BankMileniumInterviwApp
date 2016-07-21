@@ -106,6 +106,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ILeanguage.cs" />
     <Compile Include="Models\CultureOption.cs" />
     <Compile Include="Models\HeaderModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
